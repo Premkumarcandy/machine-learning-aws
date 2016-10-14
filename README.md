@@ -18,6 +18,14 @@
 2. Grant permission for Amazon
 3. Click "Continue"
 
+### Schema
+1. Answer “Yes” to the question: “Does the first line in your CSV contain the column names?”. Observe that the Name-column now uses the specific variable names instead of the genereic “Var01”, “Var02”...
+2. Verify that the column income-over-50K is of the type BINARY.
+3. Click on “Continue”
+
+
+
+
 
 
 
