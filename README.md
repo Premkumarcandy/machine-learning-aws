@@ -103,3 +103,44 @@ AUC determines how well the model performed where 1 is best and 0 is worst. AUC 
 
 This is a visualization of what threshould chosen for our categorization. By adjusting the slider we can see that the percentage of correct will change. This can be used to optimize our model depending on the prerequisitires of the problem. The model can also be adjusted based on accuracy, precision, recall or false positive rate. 
 
+3. Check "Alerts" (left menu) and that there are no alerts. Alerts might be shown if the training data and test data is very different. 
+
+
+
+## Predict income 
+
+We are using our model to predict income for data in our unpredicted file. This will be based on the threshould in 
+
+Go to Amazon Machine Learning Dashboard
+Choose ML Model 
+Generate Batch Predicitons 
+
+
+
+### Data for Batch Predictions
+
+For Locate Input Data, choose *My data is in S3, and I need to create a datasource*
+Give a name for the unpredicted data
+Write the path to the unpredicted file located in S3. 
+Choose “Yes” for *Does the first line in your CSV contain the column names?*
+Click “Verify” and “Continue”. 
+
+### Batch Prediction Reults
+
+1. Grant permission for Amazon
+2. For the S3 desitination for the result; choose the bucket created for this project. 
+3. Click “Review” and “Create Batch Prediction”. 
+
+##Evaluation of the Prediction
+
+Go to the bucket we created in S3. 
+Under *batch-prediction* look at the following files: 
+xxxxxx-manifest
+ result/xxxxx-unpredicted.cvs.gz
+
+Download the results from *result/xxxxx-unpredicted.cvs.gz*. This file contains two columns *bestAnswer* and *PredictionScore*. You can compare your prediction results with the actual results (true-results.csv). 
+
+Run the python scripts that compare the predictions with the acutal results: 
+
+`python compare-results.py prediction.csv`
+
