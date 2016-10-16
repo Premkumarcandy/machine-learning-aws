@@ -46,15 +46,16 @@ We are going to use training-data.csv to create and train a machine learning mod
 
 ### Target
 We want to tell Amazon Machine Learning which column we are trying to predict. 
+
 1. Answer "Yes" to the question: *Do you plan to use this dataset to create or evaluate an ML model?*
 2. Choose *income-over-50K* as target 
 3. Click "Continue"
 
 ### Row ID
-The Row Id is used if we want to connect each row of the input data to a unique identifier. Our input data does not contain identifier, so click "No".
+The Row Id is used if we want to connect each row of the input data to a unique identifier. Our input data does not contain identifier, so choose "No".
 
 ### Review
-If all looks correct, click "Create Datasource". This might take some minutes. 
+If all looks correct, click **Create Datasource**. This might take some minutes. 
 
 
 
