@@ -2,7 +2,7 @@
 
 **Requirement for the data set**
 
-The data set has to be a csv-file where each row is an observation.  
+The data set has to be a csv-file where each row is an observation. The data set cannot be missing more than 10000 values. 
 
 We have chosen a dataset from the archive of UC Irvine (http://archive.ics.uci.edu/ml/). The set contains variables for predicting whether a person has an income of more than 50K based on age, education, marital-status etc*. 
 
@@ -57,10 +57,49 @@ The Row Id is used if we want to connect each row of the input data to a unique 
 ### Review
 If all looks correct, click **Create Datasource**. This might take some minutes. 
 
+The datasource is ready for use when the datasource's status is *Completed*. The data is so far just uploaded and converted to an Amazon Machine Learning Object. Notice the number for *Records that failed to process*. More than 10000 makes Amazon stop the uploading. 
+
+Amazon offers visualisations of the input data. You can browse the attribues in the menu on the left side. Choose *Categorical*, and look at the preview of the data. This provides data of the attributes in the input data. The graph shows different values of the variable and number of values found. This is an easy way to see whether your data seems correct or not. 
 
 
+## Create an AWS ML Model 
+
+We want to create a ML Model based on the training set we used in the previous step. This model finds the weights for all the variables, to optimize the prediction. 
+
+On the AWS Machine Learning Dashboard choose **Create new ML Model**
+
+### Input data
+Choose the option *I already created a datasource pointing to my S3 data*. 
+Choose the datasource we created based on *training-data.csv*. 
+Click “Continue”
+
+### ML Model Settings
+Check that the model is based on *income-over-50K* and that the model type is BINARY.
+
+Select a name for the model name and a name for the evaluation. 
+
+We choose to use the default settings. This will split our data set into 2 new sets. 70% of the data will be used to train the model and 30% will be used to test the model afterwards. 
+
+Click “Review” and then **Create ML Model**. 
+
+Wait for the model to finish. This might take some time in the meanting, take a look at the ML Dashboard. 
+
+### ML Dashboard
+
+Look at the ML Dashboard. We should have 5 files: 
+The original datasource based on our input file
+Training data set (70% of the original datasource)
+Validation data set (30% of the original datasource)
+A ML Model: The model we just created based on our training set. 
+Evaluation ML Model: The evaluation of our model. 
 
 
+### Explore performance
+Choose Evaluation ML Model to see how well the model performed. 
 
+AUC determines how well the model performed where 1 is best and 0 is worst. AUC stands for Area Under the Curv and measures the ability of the model to predict a higher score for positive examples as compared to negative examples.
 
+Choose **Explore performance**
+
+This is a visualization of what threshould chosen for our categorization. By adjusting the slider we can see that the percentage of correct will change. This can be used to optimize our model depending on the prerequisitires of the problem. The model can also be adjusted based on accuracy, precision, recall or false positive rate. 
 
